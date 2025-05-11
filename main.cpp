@@ -1,15 +1,15 @@
 #include <iostream>
+#include <vector>
 #include "header.h"
 
-using namespace std;
+int main() {
+    std::vector<int> numbers = {3, 6, 8, 9, 10, 12};
 
-int main()
-{
-    std::vector<int> numbers = {10,2,5,3,5,17};
+    Functor functor(numbers);
+    functor();
 
-    Functor_GetSum sum(numbers);
-    cout << " Cумма элементов :"<< sum() <<endl;
+    std::cout << "Сумма всех элементов: " << functor.GetSum() << std::endl;
+    std::cout << "Чисел, делящихся на 3: " << functor.GetCount() << std::endl;
 
-    Functor_GetCout count(numbers);
-    cout << "Количество элементов делящихся на 3 :" << count()<<endl;
+    return 0;
 }
