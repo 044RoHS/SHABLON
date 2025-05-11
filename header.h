@@ -1,35 +1,36 @@
 #pragma once
-
 #include <vector>
 
-class Functor_GetSum{
+class Functor {
 private:
-    std::vector<int>& massiv;
-public:
-    Functor_GetSum (std::vector<int>& massiv1): massiv( massiv1){}
+    const std::vector<int>& data;
+    int sum;
+    int count;
 
-    int operator()(){
-        int sum = 0;
-        for (int i : massiv){
-            sum += i;
-        }
-        return sum ;
-    }
-
-};
-class Functor_GetCout{
-private:
-    std::vector<int>& massiv;
 public:
-    Functor_GetCout(std::vector<int>& massiv1):massiv(massiv1){}
-    int operator ()(){
-        int count = 0;
-        for (int y : massiv){
-            if(y % 3 == 0){
+
+    Functor(const std::vector<int>& vec) : data(vec), sum(0), count(0) {}
+
+
+    void operator()() {
+        sum = 0;
+        count = 0;
+
+        for (int num : data) {
+            sum += num;
+            if (num % 3 == 0) {
                 ++count;
             }
-
         }
+    }
+
+
+    int GetSum() const {
+        return sum;
+    }
+
+
+    int GetCount() const {
         return count;
     }
 };
